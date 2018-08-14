@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wya.template.android_template.MainActivity">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_get_param"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="getParam"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:background="#eeeeee"
+            android:layout_margin="4dp"/>
+        <TextView
+            android:id="@+id/tv_emit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="emit"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:background="#eeeeee"
+            android:layout_margin="4dp"/>
+
+    </TableRow>
+
+
+
+
+    <FrameLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    </FrameLayout>
+
+</LinearLayout>
