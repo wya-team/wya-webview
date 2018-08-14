@@ -72,12 +72,13 @@
         
         
 ##### WyaWebView说明
-  /**
-     * 初始化WYAWebView
-     *
-     * @param html_path
-     * @return
-     */
+
+	/**
+	* 初始化WYAWebView
+	*
+	* @param html_path
+	* @return
+	*/
     public WYAWebView init(String html_path) {
         //解决点击链接跳转浏览器问题
         this.setWebViewClient(new WebViewClient());
