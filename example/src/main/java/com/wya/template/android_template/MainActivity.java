@@ -1,15 +1,10 @@
 package com.wya.template.android_template;
 
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,14 +57,20 @@ public class MainActivity extends AppCompatActivity {
      * 初始化WyaWebView
      */
     private void initWyaWebView() {
-        parent = (FrameLayout) findViewById(R.id.parent);
         wyaWebView = new WYAWebView(this, new WebViewResult() {
+            /**
+             * 获取参数回调
+             * @param value
+             */
             @Override
             public void paramResult(String value) {
                 Log.e("paramResult", value);
                 Toast.makeText(MainActivity.this, "paramResult:" + value, Toast.LENGTH_SHORT).show();
             }
 
+            /**
+             * 页面加载完毕回调
+             */
             @Override
             public void onPageFinished() {
                 wyaWebView.initJs(init_js_str);
@@ -78,11 +79,18 @@ public class MainActivity extends AppCompatActivity {
                 wyaWebView.loadUrlAfter(js_str, 500);
             }
 
+            /**
+             * 加载网页前的回调
+             */
             @Override
             public void onPageStarted() {
 
             }
 
+            /**
+             * 拦截url, 包含command
+             * @param url
+             */
             @Override
             public void shouldOverrideUrlLoading(String url) {
                 Uri uri = Uri.parse(url);
@@ -92,12 +100,18 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "url:" + url, Toast.LENGTH_SHORT).show();
             }
 
+            /**
+             * 提交数据后回调
+             * @param value
+             */
             @Override
             public void emitResult(String value) {
                 Log.e("emitResult", value);
                 Toast.makeText(MainActivity.this, "emitResult:" + value, Toast.LENGTH_SHORT).show();
             }
         }).init("file:///android_asset/index.html");
+        //将webview添加到布局中
+        parent = (FrameLayout) findViewById(R.id.parent);
         parent.addView(wyaWebView);
     }
 }

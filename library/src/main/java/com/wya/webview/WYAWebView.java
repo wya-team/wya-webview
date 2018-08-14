@@ -81,11 +81,13 @@ public class WYAWebView extends WebView {
                 return super.shouldInterceptRequest(view, url);
             }
         });
-
-
         return this;
     }
 
+    /**
+     * 加载JS
+     * @param url
+     */
     public void wyaLoadUrl(String url) {
         loadUrl("javascript:" + url);
     }
@@ -186,6 +188,10 @@ public class WYAWebView extends WebView {
     }
 
 
+    /**
+     * 提交数据
+     * @param js_emit
+     */
     public void emit(String js_emit) {
         getJsResult(js_emit,2);
     }
