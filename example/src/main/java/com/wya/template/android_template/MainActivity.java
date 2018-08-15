@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wya.views.dialog.LoadingDialog;
 import com.wya.webview.WYAWebView;
 import com.wya.webview.WebViewResult;
 
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private String js_str;
 
     private String id;
+    private LoadingDialog loadingDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
      * 初始化WyaWebView
      */
     private void initWyaWebView() {
+        loadingDialog = new LoadingDialog(this, false);
         wyaWebView = new WYAWebView(this, new WebViewResult() {
             /**
              * 获取参数回调
@@ -73,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
              */
             @Override
             public void onPageFinished() {
+                loadingDialog.dismiss();
                 wyaWebView.initJs(init_js_str);
                 wyaWebView.initSdkJs(sdk_js_str);
                 js_str = "JSBridge.emit('_init_',{ version: '2.0.0' })";
@@ -84,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
              */
             @Override
             public void onPageStarted() {
-
+                loadingDialog.show();
             }
 
             /**
